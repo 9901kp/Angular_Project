@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +6,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
+  // input to show/hide logout button
+  @Input() showLogout!: boolean;
+/*
   constructor(private authService: AuthService) {}
 
   isLoggedIn(): boolean {
@@ -16,4 +18,5 @@ export class NavbarComponent {
   logout() {
     this.authService.logout();
   }
+  */
 }

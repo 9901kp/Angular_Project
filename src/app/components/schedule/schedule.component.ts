@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent {
-scheduleData: any;
-  // Add schedule logic here
+  scheduleData: any[] | undefined; // или определенный тип массива данных
+
+  // ngOnInit(): void {
+  //   this.isLoggedIn();
+  // }
+
+  // isLoggedIn(): boolean {
+  //   return false;
+  // }
 }

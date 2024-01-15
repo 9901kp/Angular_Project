@@ -1,30 +1,32 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { RegisterComponent } from './components/register/register.component';
+import {HttpClientModule} from "@angular/common/http";
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { ScheduleComponent } from './components/schedule/schedule.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { AuthService } from './components/auth.service';
-
+import { WorkerComponent } from './components/worker/worker.component';
+import { UnlessDirective } from './customDirectives/unless.directive';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
+    RegisterComponent,
     LoginComponent,
-    ScheduleComponent,
-    NavbarComponent
+    WorkerComponent,
+    UnlessDirective,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
