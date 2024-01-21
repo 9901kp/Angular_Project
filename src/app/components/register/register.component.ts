@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 import { passwordMatchValidator } from 'src/app/validators/passwordMatch.Validator';
 
 @Component({
@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.fetchJobOptions;
     this.createForm();
     this.fetchJobOptions();
   }
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
     if (this.registrationForm.valid) {
       const { confirmPassword, jobId, ...userData } = this.registrationForm.value;
       const job = jobId as Job;
-
+  
       this.userService.registerUser({ ...userData, jobId: job.id }).subscribe({
         next: (response) => {
           console.log("Registration successful: ", response);
@@ -59,14 +60,15 @@ export class RegisterComponent implements OnInit {
   }
 
   fetchJobOptions(): void {
-    this.userService.getJobOptions().subscribe(
-      (response) => {
+    this.userService.getJobOptions().subscribe({
+      next: (response) => {
         console.log('Job options:', response);
         this.jobOptions = response;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching job options:', error);
       }
-    );
+    });
   }
+  
 }

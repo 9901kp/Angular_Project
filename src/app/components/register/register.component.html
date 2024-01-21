@@ -9,37 +9,37 @@
                 <p class="title text-center">Register</p>
                 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="login-username" placeholder="mark1234">
+                    <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="mark1234" required>
                     <label for="firstName">Firstname</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="login-username" placeholder="mark1234">
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName"  placeholder="mark1234" required>
                     <label for="firstName">Lastname</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="login-username" placeholder="mark1234">
+                    <input type="text" class="form-control" id="email" formControlName="email"  placeholder="mark1234" required>
                     <label for="firstName">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Password" required>
                     <label for="floatingPassword">Confirm password</label>
                   </div>
 
 
-                <div class="form-floating mb-3">
-                    <label for="job">Job</label>
-                    <select class="form-control" id="jobId" formControlName="jobId">
-                      <option *ngFor="let job of jobOptions" [ngValue]="job.title">{{job.title}}</option>
-                    </select>
-                  </div>
+                <div class="form-floating mb-5">
 
+                    <label for="job">Job</label>
+                    <select *appUnless="jobOptions.length==0" class="form-control" aria-label="Default select example" id="jobId" formControlName="jobId">
+                        <option *ngFor="let job of jobOptions" [ngValue]="job">{{job.title}}</option>
+                      </select>
+                  </div>
      
-                    <button type="submit" class="btn btn-success btn-block text-left">Register</button>
+                    <button type="submit" class="btn btn-success btn-block text-left" (click)="Register()" >Register</button>
                     <button type="button" class="btn btn-primary btn-sm text-right" (click)="goToLogin()">Back to Login</button>
 
                 
