@@ -1,4 +1,4 @@
-
+<app-navbar [showLogout]="false"></app-navbar>
 <form [formGroup]="loginForm">
 <div class="container mt-3">
   <div class="row">
@@ -9,14 +9,24 @@
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="email" formControlName="email" placeholder="mark1234">
               <label for="email">Username</label>
+              <div *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="text-danger small">
+                <i class="fas fa-exclamation-circle"></i> Email is required.
+            </div>
+            <div *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="text-danger small">
+              <i class="fas fa-exclamation-circle"></i> Please enter a valid email address.
+          </div>
             </div>
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
               <label for="floatingPassword">Password</label>
+              <div *ngIf="loginError" class="text-danger small">
+                <i class="fas fa-exclamation-circle"></i> Incorrect email or password.
+              </div>
+              
             </div>
             <div class="text-center">
-              <button (click)="Login()" class="btn btn-primary w-50">Log In</button>
-              <button (click)="goToRegister()" class="btn btn-primary w-50">Register</button>
+              <button (click)="Login()" class="btn btn-primary px-3 mx-1">Log In</button>
+              <button (click)="goToRegister()" class="btn btn-success btn-primary px-3 mx-5">Register</button>
 
             </div>
           </form>

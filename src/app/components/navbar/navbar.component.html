@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Sample</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,8 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- button with display none if showLogout is false -->
-
-      <button class="btn btn-danger ms-auto" type="button" [hidden]="!showLogout">Logout</button>
+      <button *ngIf="showLogout" class="btn btn-danger ms-auto" type="button" (click)="logout()">Logout</button>
     </div>
   </div>
 </nav>

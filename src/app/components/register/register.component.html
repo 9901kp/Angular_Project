@@ -1,7 +1,6 @@
 <!-- Add Bootstrap CSS link in the head section of your HTML file -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZwT" crossorigin="anonymous">
-
-<!-- Your form with Bootstrap styling -->
+<app-navbar [showLogout]="false"></app-navbar>
 <form class="form" [formGroup]="registrationForm" (ngSubmit)="Register">
     <div class="container mt-3">
         <div class="row justify-content-md-center">
@@ -11,42 +10,63 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="mark1234" required>
                     <label for="firstName">Firstname</label>
+                    <div *ngIf="registrationForm.get('firstName')?.hasError('required') && registrationForm.get('firstName')?.touched"  class="invalid-feedback d-block">
+                        First Name is required.
+                    </div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="lastName" formControlName="lastName"  placeholder="mark1234" required>
                     <label for="firstName">Lastname</label>
+                    <div *ngIf="registrationForm.get('lastName')?.hasError('required') && registrationForm.get('lastName')?.touched" class="invalid-feedback d-block">
+                        Last Name is required.
+                    </div>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="email" formControlName="email"  placeholder="mark1234" required>
                     <label for="firstName">Email</label>
+                    <div *ngIf="registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched" class="invalid-feedback d-block">
+                        Email is required.
+                    </div>
+                    <div *ngIf="registrationForm.get('email')?.hasError('email') && registrationForm.get('email')?.touched " class="invalid-feedback d-block">
+                        Invalid email format.
+                    </div>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
-                  </div>
-                  <div class="form-floating mb-3">
+                    <div *ngIf="registrationForm.get('password')?.hasError('required') && registrationForm.get('password')?.touched" class="invalid-feedback d-block">
+                        Password is required.
+                    </div>
+                    <div *ngIf="registrationForm.get('password')?.hasError('minlength')  && registrationForm.get('password')?.touched" class="invalid-feedback d-block">
+                        Password must be at least 6 characters long.
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Password" required>
                     <label for="floatingPassword">Confirm password</label>
-                  </div>
-
+                    <div *ngIf="registrationForm.get('confirmPassword')?.hasError('required') && (registrationForm.get('password')?.dirty
+                    || registrationForm.get('confirmPassword')?.dirty)" class="invalid-feedback d-block">
+                        Confirm Password is required.
+                    </div>
+                    <div *ngIf="registrationForm.hasError('passwordMismatch')  && registrationForm.get('confirmPassword')?.touched" class="invalid-feedback d-block">
+                        Passwords do not match.
+                    </div>
+                </div>
 
                 <div class="form-floating mb-5">
-
                     <label for="job">Job</label>
                     <select *appUnless="jobOptions.length==0" class="form-control" aria-label="Default select example" id="jobId" formControlName="jobId">
                         <option *ngFor="let job of jobOptions" [ngValue]="job">{{job.title}}</option>
-                      </select>
-                  </div>
+                    </select>
+                    <div *ngIf="registrationForm.get('jobId')?.hasError('required')  && registrationForm.get('jobId')?.touched" class="invalid-feedback d-block">
+                        Job is required.
+                    </div>
+                </div>
      
-                    <button type="submit" class="btn btn-success btn-block text-left" (click)="Register()" >Register</button>
-                    <button type="button" class="btn btn-primary btn-sm text-right" (click)="goToLogin()">Back to Login</button>
-
-                
-
-                <!-- <div class="text-center mt-3">
-                    <button type="button" class="btn btn-primary btn-sm" (click)="goToLogin()   ">Back to Login</button>
-                </div> -->
+                <button type="submit" class="btn btn-success btn-block text-left px-2 py-2" (click)="Register()">Register</button>
+                <button type="button" class="btn btn-primary btn-block text-right px-2 py-2 mx-5" (click)="goToLogin()">Back to Login</button>
             </div>
         </div>
     </div>
@@ -56,4 +76,3 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    

@@ -1,9 +1,10 @@
+import { passwordMatchValidator } from 'src/app/validators/passwordMatch.Validator';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { UserService } from 'src/app/services/user.service';
-import { passwordMatchValidator } from 'src/app/validators/passwordMatch.Validator';
+
 
 @Component({
   selector: 'app-register',
@@ -11,20 +12,19 @@ import { passwordMatchValidator } from 'src/app/validators/passwordMatch.Validat
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   registrationForm!: FormGroup;
   jobOptions: Job[] = [];
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
   ) {}
-  
 
   ngOnInit(): void {
-    this.fetchJobOptions;
     this.createForm();
-    this.fetchJobOptions();
+    this.fetchJobOptions(); 
   }
 
   createForm(): void {
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     if (this.registrationForm.valid) {
       const { confirmPassword, jobId, ...userData } = this.registrationForm.value;
       const job = jobId as Job;
-  
+
       this.userService.registerUser({ ...userData, jobId: job.id }).subscribe({
         next: (response) => {
           console.log("Registration successful: ", response);
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  goToLogin(): void {
+  goToLogin() {
     this.router.navigate(['/login']);
   }
 
@@ -70,5 +70,4 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-  
 }

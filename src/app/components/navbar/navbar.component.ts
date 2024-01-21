@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +11,10 @@ import { Component, Input } from '@angular/core';
 export class NavbarComponent {
   // input to show/hide logout button
   @Input() showLogout!: boolean;
-/*
-  constructor(private authService: AuthService) {}
+
+  constructor(private authService: AuthService,
+              private Router: Router          
+    ) {}
 
   isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
@@ -17,6 +22,9 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
+    console.log("Logout clicked")
+    console.log('After logout - navigating to login page');
+     this.Router.navigate(['/login']);
   }
-  */
+ 
 }

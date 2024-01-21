@@ -1,9 +1,11 @@
 export interface Schedule {
-    id: number;          
-    date: string;        
-    startTime: string;   
-    endTime: string;    
-    job: string;        
-    worker: string;      
-    status: string; 
+    id: number;
+    startTime: Date;
+    endTime: Date;
+    userId: number;
+    firstName: string;
+    lastName: string;
+    jobId: number;
+    jobTitle: string;
+    isApproved: boolean;
 }

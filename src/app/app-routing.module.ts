@@ -8,13 +8,14 @@ import { AdminGuard } from './guards/admin.guard';
 import { WorkerGuard } from './guards/worker.guard';
 
 const routes: Routes = [
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-  {path:'worker', component: WorkerComponent, canActivate:[WorkerGuard]},
-  {path:'admin', component: AdminComponent, canActivate:[AdminGuard]},
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'worker', component: WorkerComponent, canActivate: [WorkerGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
 
-  {path:'', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
